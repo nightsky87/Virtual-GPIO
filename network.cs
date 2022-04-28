@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
@@ -11,6 +12,7 @@ namespace Virtual_GPIO
 {
     partial class Form1
     {
+        System.Timers.Timer pollTimer = null;
         private ClientWebSocket ws = null;
         CancellationToken ct = new CancellationToken();
 
@@ -35,17 +37,35 @@ namespace Virtual_GPIO
                     }
                 }
             } while (ws.State != WebSocketState.Open);
+            
+            pollTimer = new System.Timers.Timer(10);
+            pollTimer.Interval = 10;
+            pollTimer.Elapsed += getData;
+            pollTimer.AutoReset = true;
+            pollTimer.Enabled = false;
         }
         private async Task websockDisconnect()
         {
             await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Exit program", ct);
         }
 
-        public async Task sendData()
+        private async Task sendData()
         {
-            var array = new byte[] { boardId, btnState, swState };
+            var array = new byte[] { 0xFF, boardId, btnState, swState };
             ArraySegment<byte> payload = new ArraySegment<byte>(array);
             await ws.SendAsync(payload, WebSocketMessageType.Binary, true, ct);
+        }
+        private async void getData(Object source, ElapsedEventArgs e)
+        {
+            var array = new byte[] { 0x00, boardId, 0x00, 0x00 };
+            ArraySegment<byte> payload = new ArraySegment<byte>(array);
+            await ws.SendAsync(payload, WebSocketMessageType.Binary, true, ct);
+            pollTimer.Stop();
+            await ws.ReceiveAsync(payload, ct);
+
+            byte[] data = payload.ToArray();
+            updateLed(data[0]);
+            pollTimer.Start();
         }
     }
 }

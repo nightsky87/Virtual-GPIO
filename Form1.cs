@@ -37,6 +37,7 @@ namespace Virtual_GPIO
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             boardId = (byte)(comboBoard.SelectedIndex + 1);
+            pollTimer.Enabled = true;
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -152,24 +153,13 @@ namespace Virtual_GPIO
 
         private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            await websockDisconnect();
+            try
+            {
+                await websockDisconnect();
+            }
+            finally
+            {
+            }
         }
-    }
-    public class payload
-    {
-        public int board { get; set; } = -1;
-
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public int sw { get; set; } = -1;
-
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public int btn { get; set; } = -1;
-
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public int led { get; set; } = -1;
-    }
-
-    public class btnHandler
-    {
     }
 }

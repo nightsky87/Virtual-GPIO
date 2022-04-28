@@ -46,6 +46,14 @@ namespace Virtual_GPIO
             this.btnDownL = new System.Windows.Forms.PictureBox();
             this.btnLeftL = new System.Windows.Forms.PictureBox();
             this.btnRightL = new System.Windows.Forms.PictureBox();
+            this.led7 = new System.Windows.Forms.PictureBox();
+            this.led6 = new System.Windows.Forms.PictureBox();
+            this.led5 = new System.Windows.Forms.PictureBox();
+            this.led4 = new System.Windows.Forms.PictureBox();
+            this.led3 = new System.Windows.Forms.PictureBox();
+            this.led2 = new System.Windows.Forms.PictureBox();
+            this.led1 = new System.Windows.Forms.PictureBox();
+            this.led0 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.sw0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw2)).BeginInit();
@@ -62,6 +70,14 @@ namespace Virtual_GPIO
             ((System.ComponentModel.ISupportInitialize)(this.btnDownL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLeftL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRightL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led0)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoard
@@ -298,11 +314,115 @@ namespace Virtual_GPIO
             this.btnRightL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRightL_MouseDown);
             this.btnRightL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnRightL_MouseUp);
             // 
+            // led7
+            // 
+            this.led7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led7.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led7.Location = new System.Drawing.Point(213, 102);
+            this.led7.Margin = new System.Windows.Forms.Padding(2);
+            this.led7.Name = "led7";
+            this.led7.Size = new System.Drawing.Size(60, 60);
+            this.led7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led7.TabIndex = 26;
+            this.led7.TabStop = false;
+            // 
+            // led6
+            // 
+            this.led6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led6.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led6.Location = new System.Drawing.Point(277, 102);
+            this.led6.Margin = new System.Windows.Forms.Padding(2);
+            this.led6.Name = "led6";
+            this.led6.Size = new System.Drawing.Size(60, 60);
+            this.led6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led6.TabIndex = 27;
+            this.led6.TabStop = false;
+            // 
+            // led5
+            // 
+            this.led5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led5.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led5.Location = new System.Drawing.Point(341, 102);
+            this.led5.Margin = new System.Windows.Forms.Padding(2);
+            this.led5.Name = "led5";
+            this.led5.Size = new System.Drawing.Size(60, 60);
+            this.led5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led5.TabIndex = 28;
+            this.led5.TabStop = false;
+            // 
+            // led4
+            // 
+            this.led4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led4.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led4.Location = new System.Drawing.Point(405, 102);
+            this.led4.Margin = new System.Windows.Forms.Padding(2);
+            this.led4.Name = "led4";
+            this.led4.Size = new System.Drawing.Size(60, 60);
+            this.led4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led4.TabIndex = 29;
+            this.led4.TabStop = false;
+            // 
+            // led3
+            // 
+            this.led3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led3.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led3.Location = new System.Drawing.Point(469, 102);
+            this.led3.Margin = new System.Windows.Forms.Padding(2);
+            this.led3.Name = "led3";
+            this.led3.Size = new System.Drawing.Size(60, 60);
+            this.led3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led3.TabIndex = 30;
+            this.led3.TabStop = false;
+            // 
+            // led2
+            // 
+            this.led2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led2.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led2.Location = new System.Drawing.Point(533, 102);
+            this.led2.Margin = new System.Windows.Forms.Padding(2);
+            this.led2.Name = "led2";
+            this.led2.Size = new System.Drawing.Size(60, 60);
+            this.led2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led2.TabIndex = 31;
+            this.led2.TabStop = false;
+            // 
+            // led1
+            // 
+            this.led1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led1.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led1.Location = new System.Drawing.Point(597, 102);
+            this.led1.Margin = new System.Windows.Forms.Padding(2);
+            this.led1.Name = "led1";
+            this.led1.Size = new System.Drawing.Size(60, 60);
+            this.led1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led1.TabIndex = 32;
+            this.led1.TabStop = false;
+            // 
+            // led0
+            // 
+            this.led0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.led0.Image = global::Virtual_GPIO.Properties.Resources.led_off;
+            this.led0.Location = new System.Drawing.Point(661, 102);
+            this.led0.Margin = new System.Windows.Forms.Padding(2);
+            this.led0.Name = "led0";
+            this.led0.Size = new System.Drawing.Size(60, 60);
+            this.led0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led0.TabIndex = 33;
+            this.led0.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 756);
+            this.Controls.Add(this.led0);
+            this.Controls.Add(this.led1);
+            this.Controls.Add(this.led2);
+            this.Controls.Add(this.led3);
+            this.Controls.Add(this.led4);
+            this.Controls.Add(this.led5);
+            this.Controls.Add(this.led6);
+            this.Controls.Add(this.led7);
             this.Controls.Add(this.btnRightL);
             this.Controls.Add(this.btnLeftL);
             this.Controls.Add(this.btnDownL);
@@ -346,6 +466,14 @@ namespace Virtual_GPIO
             ((System.ComponentModel.ISupportInitialize)(this.btnDownL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLeftL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRightL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led0)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,6 +496,14 @@ namespace Virtual_GPIO
         private System.Windows.Forms.PictureBox btnLeftL;
         private System.Windows.Forms.PictureBox btnDownL;
         private System.Windows.Forms.PictureBox btnUpL;
+        private System.Windows.Forms.PictureBox led7;
+        private System.Windows.Forms.PictureBox led6;
+        private System.Windows.Forms.PictureBox led5;
+        private System.Windows.Forms.PictureBox led4;
+        private System.Windows.Forms.PictureBox led3;
+        private System.Windows.Forms.PictureBox led2;
+        private System.Windows.Forms.PictureBox led1;
+        private System.Windows.Forms.PictureBox led0;
     }
 }
 
