@@ -54,6 +54,7 @@ namespace Virtual_GPIO
             this.led2 = new System.Windows.Forms.PictureBox();
             this.led1 = new System.Windows.Forms.PictureBox();
             this.led0 = new System.Windows.Forms.PictureBox();
+            this.textStatus = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.sw0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw2)).BeginInit();
@@ -410,11 +411,24 @@ namespace Virtual_GPIO
             this.led0.TabIndex = 33;
             this.led0.TabStop = false;
             // 
+            // textStatus
+            // 
+            this.textStatus.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textStatus.Enabled = false;
+            this.textStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textStatus.Location = new System.Drawing.Point(661, 33);
+            this.textStatus.Name = "textStatus";
+            this.textStatus.ReadOnly = true;
+            this.textStatus.Size = new System.Drawing.Size(247, 35);
+            this.textStatus.TabIndex = 34;
+            this.textStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 756);
+            this.Controls.Add(this.textStatus);
             this.Controls.Add(this.led0);
             this.Controls.Add(this.led1);
             this.Controls.Add(this.led2);
@@ -444,12 +458,13 @@ namespace Virtual_GPIO
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Virtual GPIO";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Virtual GPIO Controller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.sw0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sw2)).EndInit();
@@ -475,6 +490,7 @@ namespace Virtual_GPIO
             ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led0)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -504,6 +520,7 @@ namespace Virtual_GPIO
         private System.Windows.Forms.PictureBox led2;
         private System.Windows.Forms.PictureBox led1;
         private System.Windows.Forms.PictureBox led0;
+        private System.Windows.Forms.TextBox textStatus;
     }
 }
 

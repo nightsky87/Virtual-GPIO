@@ -123,10 +123,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="buttons.cs">
+    <Compile Include="devices\buttons.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="controller.cs">
+    <Compile Include="devices\controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="devices\switches.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -135,13 +138,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="keyboard.cs">
+    <Compile Include="devices\keyboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="led.cs">
+    <Compile Include="devices\led.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="network.cs">
+    <Compile Include="devices\network.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -175,22 +178,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="led_off.png" />
+    <None Include="assets\led_off.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="led_on.png" />
+    <None Include="assets\led_on.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sw_off.png" />
+    <None Include="assets\sw_off.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sw_on.png" />
+    <None Include="assets\sw_on.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btn_off.png" />
+    <None Include="assets\btn_off.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btn_on.png" />
+    <None Include="assets\btn_on.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -204,5 +207,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

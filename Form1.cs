@@ -19,9 +19,8 @@ namespace Virtual_GPIO
     public partial class Form1 : Form
     {
         private byte boardId;
-        private byte swState = 0x00;
-
         PictureBox[] swArr;
+        private bool inputEnabled = false;
 
         public Form1()
         {
@@ -29,137 +28,87 @@ namespace Virtual_GPIO
             swArr = new PictureBox[] { sw0, sw1, sw2, sw3, sw4, sw5, sw6, sw7 };
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            websockConnect();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             boardId = (byte)(comboBoard.SelectedIndex + 1);
-            pollTimer.Enabled = true;
-        }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar >= 49 && e.KeyChar <= 56)
-            {
-                int n = 7 - (e.KeyChar - 49);
-                swState = (byte)(swState ^ (1 << n));
-                if ((swState & (1 << n)) == 0)
-                    swArr[n].Image = Properties.Resources.sw_off;
-                else
-                    swArr[n].Image = Properties.Resources.sw_on;
-
-                sendData();
-            }
-        }
-
-        private void sw7_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x80;
-
-            if ((swState & 0x80) == 0)
-                sw7.Image = Properties.Resources.sw_off;
-            else
-                sw7.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw6_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x40;
-
-            if ((swState & 0x40) == 0)
-                sw6.Image = Properties.Resources.sw_off;
-            else
-                sw6.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw5_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x20;
-
-            if ((swState & 0x20) == 0)
-                sw5.Image = Properties.Resources.sw_off;
-            else
-                sw5.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw4_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x10;
-
-            if ((swState & 0x10) == 0)
-                sw4.Image = Properties.Resources.sw_off;
-            else
-                sw4.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw3_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x08;
-
-            if ((swState & 0x08) == 0)
-                sw3.Image = Properties.Resources.sw_off;
-            else
-                sw3.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw2_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x04;
-
-            if ((swState & 0x04) == 0)
-                sw2.Image = Properties.Resources.sw_off;
-            else
-                sw2.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw1_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x02;
-
-            if ((swState & 0x02) == 0)
-                sw1.Image = Properties.Resources.sw_off;
-            else
-                sw1.Image = Properties.Resources.sw_on;
-
-            sendData();
-        }
-
-        private void sw0_Click(object sender, EventArgs e)
-        {
-            swState ^= 0x01;
-
-            if ((swState & 0x01) == 0)
-                sw0.Image = Properties.Resources.sw_off;
-            else
-                sw0.Image = Properties.Resources.sw_on;
-
-            sendData();
+            await websockDisconnect();
+            await websockConnect();
         }
 
         private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
+            //await websockDisconnect();
+            Application.Exit();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textStatus.Text = "Disconnected";
+            textStatus.BackColor = Color.DarkGray;
+            ws = new System.Net.WebSockets.ClientWebSocket();
+            disableInputs();
+        }
+
+        public class DisabledTextBox : System.Windows.Forms.TextBox
+        {
+            private const int WM_SETFOCUS = 0x07;
+            private const int WM_ENABLE = 0x0A;
+            private const int WM_SETCURSOR = 0x20;
+
+            protected override void WndProc(ref System.Windows.Forms.Message m)
             {
-                await websockDisconnect();
-            }
-            finally
-            {
+                if (!(m.Msg == WM_SETFOCUS || m.Msg == WM_ENABLE || m.Msg == WM_SETCURSOR))
+                    base.WndProc(ref m);
             }
         }
+
+        private void disableInputs()
+        {
+            btnUpL.Enabled = false;
+            btnDownL.Enabled = false;
+            btnLeftL.Enabled = false;
+            btnRightL.Enabled = false;
+            btnUpR.Enabled = false;
+            btnDownR.Enabled = false;
+            btnLeftR.Enabled = false;
+            btnRightR.Enabled = false;
+            sw7.Enabled = false;
+            sw6.Enabled = false;
+            sw5.Enabled = false;
+            sw4.Enabled = false;
+            sw3.Enabled = false;
+            sw2.Enabled = false;
+            sw1.Enabled = false;
+            sw0.Enabled = false;
+            inputEnabled = false;
+        }
+
+        private void enableInputs()
+        {
+            btnUpL.Enabled = true;
+            btnDownL.Enabled = true;
+            btnLeftL.Enabled = true;
+            btnRightL.Enabled = true;
+            btnUpR.Enabled = true;
+            btnDownR.Enabled = true;
+            btnLeftR.Enabled = true;
+            btnRightR.Enabled = true;
+            sw7.Enabled = true;
+            sw6.Enabled = true;
+            sw5.Enabled = true;
+            sw4.Enabled = true;
+            sw3.Enabled = true;
+            sw2.Enabled = true;
+            sw1.Enabled = true;
+            sw0.Enabled = true;
+            inputEnabled = true;
+        }
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                e.IsInputKey = true;
+        }
+
     }
 }
