@@ -62,6 +62,12 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DXNET, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DXNET.5.0.0\lib\net48\DXNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DXNET.XInput, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DXNET.XInput.5.0.0\lib\net48\DXNET.XInput.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -73,12 +79,6 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyModel, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.DependencyModel.5.0.0\lib\net461\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Silk.NET.Core, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Silk.NET.Core.2.15.0\lib\netstandard2.0\Silk.NET.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Silk.NET.XInput, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Silk.NET.XInput.2.15.0\lib\netstandard2.0\Silk.NET.XInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">

@@ -47,6 +47,7 @@ namespace Virtual_GPIO
             textStatus.BackColor = Color.DarkGray;
             ws = new System.Net.WebSockets.ClientWebSocket();
             disableInputs();
+            findControllers();
         }
 
         public class DisabledTextBox : System.Windows.Forms.TextBox
