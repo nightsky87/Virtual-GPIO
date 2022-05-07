@@ -21,6 +21,7 @@ namespace Virtual_GPIO
         private byte boardId;
         PictureBox[] swArr;
         private bool inputEnabled = false;
+        private byte version = 0x10;
 
         public Form1()
         {
@@ -41,7 +42,7 @@ namespace Virtual_GPIO
             Application.Exit();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             textStatus.Text = "Disconnected";
             textStatus.BackColor = Color.DarkGray;

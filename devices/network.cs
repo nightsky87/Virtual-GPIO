@@ -45,8 +45,8 @@ namespace Virtual_GPIO
             } while (ws.State != WebSocketState.Open);
             comboBoard.Enabled = true;
 
-            // Send the board number
-            var array = new byte[] { boardId };
+            // Send the application version and board number
+            var array = new byte[] { version, boardId };
             ArraySegment<byte> buffer = new ArraySegment<byte>(array);
             await ws.SendAsync(buffer, WebSocketMessageType.Binary, true, ct);
 
@@ -57,9 +57,16 @@ namespace Virtual_GPIO
             numOutput = buffer.Array[1];
 
             // Check if the board is valid
-            if (numInput == 255 || numOutput == 255)
+            if (numInput == 255 || numOutput == 255 || (numInput == 0 && numOutput == 0))
             {
                 textStatus.Text = "Board Error";
+                textStatus.BackColor = Color.Red;
+                await websockDisconnect();
+                return;
+            }
+            else if (numInput == 254 || numOutput == 254)
+            {
+                textStatus.Text = "Version Mismatch";
                 textStatus.BackColor = Color.Red;
                 await websockDisconnect();
                 return;
@@ -102,19 +109,23 @@ namespace Virtual_GPIO
                     await ws.ReceiveAsync(buffer, ct);
 
                     int msgType = buffer.Array[0];
-                    if (msgType == 0)
+                    int devId = buffer.Array[1];
+                    if (devId == boardId)
                     {
-                        byte ledVal = buffer.Array[1];
-                        updateLed(ledVal);
-                    }
-                    else
-                    {
+                        if (msgType == 0)
+                        {
+                            byte ledVal = buffer.Array[2];
+                            updateLed(ledVal);
+                        }
+                        else
+                        {
 
-                        btnState = buffer.Array[1];
-                        updateButtonImages();
+                            btnState = buffer.Array[2];
+                            updateButtonImages();
 
-                        swState = buffer.Array[2];
-                        updateSwitchImages();
+                            swState = buffer.Array[3];
+                            updateSwitchImages();
+                        }
                     }
                 }
                 else
